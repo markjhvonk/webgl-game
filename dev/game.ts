@@ -34,6 +34,7 @@ class Game {
 
     gameLoop() : void {
         // console.log("loop test 1")
+<<<<<<< HEAD
 
         this.cube.rotation.x += 0.1;
         this.cube.rotation.y += 0.1;
@@ -41,6 +42,8 @@ class Game {
         // Render scene
 	    this.renderer.render( this.scene, this.camera );
 
+=======
+>>>>>>> 3f19dc04e534c6b82299294e8946d33a5aa702f3
         requestAnimationFrame(() => this.gameLoop())
     }
 }
