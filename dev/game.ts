@@ -16,7 +16,7 @@ class Game {
     }
 
     gameLoop() : void {
-        console.log("loop test 1")
+        // console.log("loop test 1")
         requestAnimationFrame(() => this.gameLoop())
     }
 }
