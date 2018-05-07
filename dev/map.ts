@@ -56,7 +56,7 @@ export default class Map {
                 } else {
                     rowCounter++
                 }
-            }, i * 100);
+            }, i * 50);
         }
     }
 }

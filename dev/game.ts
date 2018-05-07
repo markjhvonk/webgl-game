@@ -8,6 +8,9 @@ class Game {
     public towerModel : any
     public scene : any
 
+    // singleton (lesson)
+    private static instance: Game;
+
     constructor(){
         console.log("new game created!")
 
@@ -73,6 +76,15 @@ class Game {
         // initialize game loop
         this.gameLoop()
     }
+
+    // singleton (lesson)
+    public static getInstance() {
+        if(! Game.instance) {
+            Game.instance = new Game()
+        }
+        return Game.instance
+    }
+
 
     gameLoop() : void {
 

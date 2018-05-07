@@ -5,6 +5,7 @@ export default class OpenTile extends Tile {
     // public tile : any
     constructor(scene : any, src : string, mtl : string, position : Array<Number>, scale : Number){
         super(scene, src, mtl, position, scale)
+        //variable to store original tile for methods?
         let carryTile = this.tile
 
         let selected = false
@@ -35,13 +36,5 @@ export default class OpenTile extends Tile {
             // tile.setAttribute("color", "")
             console.log("hover out")
         })
-
-        if(selected) {
-            // tile.setAttribute("mtl", "")
-            // tile.setAttribute("color", "#ff0000")
-        } else {
-            // tile.setAttribute("mtl", "#" + mtl)
-            // tile.setAttribute("color", "")
-        }
     }
 }
