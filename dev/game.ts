@@ -12,6 +12,7 @@ export default class Game {
     private static instance: Game
 
     public scene : any
+    private ui : any
 
     private constructor(){
         console.log("new game created!")
@@ -46,7 +47,12 @@ export default class Game {
 
 
     // Game loop
+    private health : number = 0.1
     gameLoop() : void {
+
+        if(this.ui.healthbarStatus.value > 0) {
+            this.ui.setHealth("subtract", this.health)
+        }
 
         requestAnimationFrame(() => this.gameLoop())
     }
@@ -54,7 +60,7 @@ export default class Game {
     // initialze scene
     init(reality : string) : void {
 
-        let ui = new Ui()
+        this.ui = new Ui()
 
         this.scene = document.createElement("a-scene")
         this.scene.setAttribute("outline", "")
