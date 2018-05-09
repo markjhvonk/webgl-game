@@ -47,7 +47,7 @@ export default class Map {
                         break;
 
                     default: 
-                        console.log("error");
+                        console.log("invalid map tile");
                 }
 
                 if(rowCounter == 4) {
