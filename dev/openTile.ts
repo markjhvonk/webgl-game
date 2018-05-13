@@ -1,17 +1,24 @@
 import Tile from './tile'
+import actionButton from './actionButton'
 
 export default class OpenTile extends Tile {
 
     // public tile : any
-    constructor(scene : any, src : string, mtl : string, position : Array<Number>, scale : Number){
+    constructor(scene : any, ui : any, src : string, mtl : string, position : Array<Number>, scale : Number){
         super(scene, src, mtl, position, scale)
         //variable to store original tile for methods?
+
         let carryTile = this.tile
 
         let selected = false
         let selectedCylinder : any
+
+        let towerButton : any
+
         this.tile.addEventListener("mouseenter", function(){
             selected = true
+
+            // selected cylinder
             selectedCylinder = document.createElement("a-torus")
             selectedCylinder.setAttribute("color", "#ff0000")
             selectedCylinder.setAttribute("scale", "0.05 0.05 0.05")
@@ -20,20 +27,18 @@ export default class OpenTile extends Tile {
             selectedCylinder.setAttribute("radius", "5")
             selectedCylinder.setAttribute("radiusTubular", "0.001")
             carryTile.appendChild(selectedCylinder)
-            // tile.setAttribute("metalness", "1")
-            // tile.setAttribute("scale", "1 1.5 1")
-            // tile.setAttribute("wireframe", "true")
-            // tile.setAttribute("mtl", "")
-            // tile.setAttribute("color", "#ff0000")
+            
+            towerButton = new actionButton('towerSelect')
+            towerButton.button.addEventListener("click", function(){
+                console.log("tower button test!");
+            })
+
             console.log("hover in")
         })
         this.tile.addEventListener("mouseleave", function(){
             selected = false
             carryTile.removeChild(selectedCylinder)
-            // tile.setAttribute("mtl", "#" + mtl)
-            // tile.setAttribute("scale", "1 1 1")
-            // tile.setAttribute("wireframe", "false")
-            // tile.setAttribute("color", "")
+            towerButton.removeActionButton()
             console.log("hover out")
         })
     }

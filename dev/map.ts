@@ -2,7 +2,7 @@ import Tile from './tile'
 import OpenTile from './openTile'
 
 export default class Map {
-    constructor(scene : any, mapArray : Array<String>){
+    constructor(scene : any, ui : any, mapArray : Array<String>){
 
         console.log("Map array length: "+mapArray.length)
         
@@ -19,7 +19,7 @@ export default class Map {
                         break;
                         
                     case "o":
-                        let emptyTile1 : OpenTile = new OpenTile(scene, "empty-1-obj", "empty-1-mtl", [rowCounter, 0, rowCount], 1)
+                        let emptyTile1 : OpenTile = new OpenTile(scene, ui, "empty-1-obj", "empty-1-mtl", [rowCounter, 0, rowCount], 1)
                         break;
 
                     case "ns": 

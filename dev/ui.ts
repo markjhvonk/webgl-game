@@ -25,9 +25,6 @@ export default class Ui {
         // action panel
         this.actionPanel = document.createElement('action-panel')
         document.body.appendChild(this.actionPanel)
-        this.addActionButton()
-        this.addActionButton()
-        this.addActionButton()
 
         // coins
         let coins = document.createElement('coins')
@@ -64,11 +61,6 @@ export default class Ui {
         setTimeout(function(){ 
             document.body.removeChild(banner)
         }, duration);
-    }
-    
-    private addActionButton() : void {
-        let actionButton = document.createElement('action-button')
-        this.actionPanel.appendChild(actionButton)
     }
 
     private setScore(operation : string, value : number) : void {

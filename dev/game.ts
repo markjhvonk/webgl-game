@@ -12,7 +12,7 @@ export default class Game {
     private static instance: Game
 
     public scene : any
-    private ui : any
+    public ui : any
 
     private constructor(){
         console.log("new game created!")
@@ -30,7 +30,7 @@ export default class Game {
             "o","ne","ws","o","x",
             "x","o","ns","x","x"
         ]
-        let map = new Map(this.scene, mapArray)
+        let map = new Map(this.scene, this.ui, mapArray)
 
         // initialize game loop
         this.gameLoop()
@@ -47,12 +47,12 @@ export default class Game {
 
 
     // Game loop
-    private health : number = 0.1
+    // private health : number = 0.1
     gameLoop() : void {
 
-        if(this.ui.healthbarStatus.value > 0) {
-            this.ui.setHealth("subtract", this.health)
-        }
+        // if(this.ui.healthbarStatus.value > 0) {
+        //     this.ui.setHealth("subtract", this.health)
+        // }
 
         requestAnimationFrame(() => this.gameLoop())
     }
