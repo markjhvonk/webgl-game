@@ -42,7 +42,13 @@ export default class AssetsLoader {
             "path-ws-obj": "js/models/path/towerDefense_093.obj", 
             "path-ws-mtl": "js/models/path/towerDefense_093.mtl",
             "path-nw-obj": "js/models/path/towerDefense_094.obj", 
-            "path-nw-mtl": "js/models/path/towerDefense_094.mtl"
+            "path-nw-mtl": "js/models/path/towerDefense_094.mtl",
+            "tower-base-1-obj": "js/models/towers/base/towerDefense_010.obj",
+            "tower-base-1-mtl": "js/models/towers/base/towerDefense_010.mtl",
+            "tower-body-1-obj": "js/models/towers/body/towerDefense_009.obj",
+            "tower-body-1-mtl": "js/models/towers/body/towerDefense_009.mtl",
+            "tower-top-1-obj": "js/models/towers/top/towerDefense_001.obj",
+            "tower-top-1-mtl": "js/models/towers/top/towerDefense_001.mtl"
         }
 
         let assets = document.createElement("a-assets")

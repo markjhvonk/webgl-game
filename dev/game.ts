@@ -5,6 +5,7 @@ import 'aframe-outline';
 import Map from './map';
 import AssetsLoader from './assetsLoader';
 import Ui from './ui';
+import Tower from './tower';
 
 export default class Game {
 
@@ -31,6 +32,9 @@ export default class Game {
             "x","o","ns","x","x"
         ]
         let map = new Map(this.scene, this.ui, mapArray)
+
+        //test tower
+        let tower = new Tower(this.scene, 'regular', [1.13, 0.4, 5.9], 1)
 
         // initialize game loop
         this.gameLoop()
