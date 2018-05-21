@@ -1,5 +1,5 @@
 export default class Tile {
-    public tile :any
+    public tile : HTMLElement
     constructor(scene : any, src : string, mtl : string, position : Array<Number>, scale : Number){
         // console.log("Tile created!")
         this.tile = document.createElement("a-obj-model")

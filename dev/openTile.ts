@@ -21,43 +21,47 @@ export default class OpenTile extends Tile {
         this.y = 0.4
         this.z = -0.5
 
-        // this.towerStatus = "open"
+        // add event listeners
         this.tile.addEventListener("mouseenter", this.tileHoverIn.bind(this))
         this.tile.addEventListener("mouseleave", this.tileHoverOut.bind(this))
-        
-        console.log("tower status #4: "+this.towerStatus)
     }
 
     createTower() : void {
-        console.log("tower button test!");
-        console.log("tower status #2.5: "+this.towerStatus)
-        this.tile.removeEventListener("mouseenter", this.tileHoverIn.bind(this))
-        // this.tile.removeEventListener("mouseleave", this.tileHoverOut.bind(this))
-        // create test tower
-        let tower = new Tower(this.tile, 'regular', [0, this.y, 0], 1)
-        this.towerStatus = "filled"
-        console.log("tower status #3: "+this.towerStatus)
+        if(this.towerStatus === "open") {
+            // remove cylinder and button just to make sure
+            this.tile.removeChild(this.selectedCylinder)
+            this.towerButton.removeActionButton()
+            // create test tower
+            let tower = new Tower(this.tile, 'regular', [0, this.y, 0], 1)
+            this.towerStatus = "filled"
+            console.log("tower status #3: "+this.towerStatus)
+        }
     }
 
     tileHoverIn() : void {
-        // add selected cylinder
-        this.selectedCylinder = document.createElement("a-torus")
-        this.selectedCylinder.setAttribute("color", "#ff0000")
-        this.selectedCylinder.setAttribute("scale", "0.05 0.05 0.05")
-        this.selectedCylinder.setAttribute("rotation", "90 0 0")
-        this.selectedCylinder.setAttribute("position", this.x + " " + this.y + " "+ this.z)
-        this.selectedCylinder.setAttribute("radius", "5")
-        this.selectedCylinder.setAttribute("radiusTubular", "0.001")
-        this.tile.appendChild(this.selectedCylinder)
-
-        this.towerButton = new actionButton('towerSelect')
-        this.towerButton.button.addEventListener("click", this.createTower.bind(this))
-        console.log("hover in")
+        if(this.towerStatus === "open") {
+            // add selected cylinder
+            this.selectedCylinder = document.createElement("a-torus")
+            this.selectedCylinder.setAttribute("color", "#ff0000")
+            this.selectedCylinder.setAttribute("scale", "0.05 0.05 0.05")
+            this.selectedCylinder.setAttribute("rotation", "90 0 0")
+            this.selectedCylinder.setAttribute("position", this.x + " " + this.y + " "+ this.z)
+            this.selectedCylinder.setAttribute("radius", "5")
+            this.selectedCylinder.setAttribute("radiusTubular", "0.001")
+            this.tile.appendChild(this.selectedCylinder)
+            // add button
+            this.towerButton = new actionButton('towerSelect')
+            this.towerButton.button.addEventListener("click", this.createTower.bind(this))
+            console.log("hover in")
+        }
     }
 
     tileHoverOut() : void {
-        this.tile.removeChild(this.selectedCylinder)
-        this.towerButton.removeActionButton()
-        console.log("hover out")
+        if(this.towerStatus === "open") {
+            // remove button and cylinder
+            this.tile.removeChild(this.selectedCylinder)
+            this.towerButton.removeActionButton()
+            console.log("hover out")
+        }
     }
 }
