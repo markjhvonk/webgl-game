@@ -12,8 +12,7 @@ export default class OpenTile extends Tile {
     private y : number
     private z : number
     private selectedCylinder : any
-
-    // public tile : any
+    
     constructor(scene : any, ui : any, src : string, mtl : string, position : Array<Number>, scale : Number){
         super(scene, src, mtl, position, scale)
 
