@@ -33,9 +33,6 @@ export default class Game {
         ]
         let map = new Map(this.scene, this.ui, mapArray)
 
-        //test tower
-        let tower = new Tower(this.scene, 'regular', [1.13, 0.4, 5.9], 1)
-
         // initialize game loop
         this.gameLoop()
     }
