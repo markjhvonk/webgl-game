@@ -9,7 +9,7 @@ export default class Map {
         let rowCounter : number = 0
         let rowCount : number = 0
         for (let i = 0; i < mapArray.length; i++) {
-            setTimeout(function(){
+            setTimeout(()=>{
                 switch (mapArray[i]){
                     case "x":
                         let filledTileArray :Array<String> = ["trees", "rocks", "crystals"]

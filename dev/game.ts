@@ -6,6 +6,9 @@ import Map from './map';
 import AssetsLoader from './assetsLoader';
 import Ui from './ui';
 import Tower from './tower';
+import EnemyInit from './enemies/enemyInit';
+import defaultEnemy from './enemies/defaultEnemy';
+// import Enemy from './enemy';
 
 export default class Game {
 
@@ -14,6 +17,7 @@ export default class Game {
 
     public scene : any
     public ui : any
+    private enemyInit : EnemyInit
 
     private constructor(){
         console.log("new game created!")
@@ -33,6 +37,8 @@ export default class Game {
         ]
         let map = new Map(this.scene, this.ui, mapArray)
 
+        this.enemyInit = new EnemyInit(this.scene)
+
         // initialize game loop
         this.gameLoop()
     }
@@ -48,12 +54,8 @@ export default class Game {
 
 
     // Game loop
-    // private health : number = 0.1
     gameLoop() : void {
-
-        // if(this.ui.healthbarStatus.value > 0) {
-        //     this.ui.setHealth("subtract", this.health)
-        // }
+        this.enemyInit.enemyMovement()
 
         requestAnimationFrame(() => this.gameLoop())
     }
