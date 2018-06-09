@@ -4,51 +4,42 @@ export default class defaultEnemy extends Enemy {
     public damage : number
     public life : number
     public speed : number
-    private path : [string,number][]
+    private path : [string,number,number][]
     private position : number[]
+    private movementCounter : number
+    private pathNum : number
 
-    constructor(scene : any, position:number[], path:[string,number][]) {
+    constructor(scene : any, position:number[], path:[string,number,number][]) {
         super(scene, position, path)
         this.damage = 10
         this.life = 100
-        this.speed = 20
+        this.speed = 0.01
         this.path = path
         this.position = position
+        this.movementCounter = 0
+        this.pathNum = 0
     }
 
     public move() : void {
-        console.log("enemy moving!!!")
-        let moving = false
-        // while(this.position[2] < (this.path[0][1] - 0.5)){
-        //     this.position[2] += 0.0001
-        //     this.enemy.setAttribute("position", this.position[0] + " " + this.position[1] + " " + this.position[2])
-        //     console.log("enemy pos: "+this.position[2]+" point pos: "+this.path[0][1])
-        // }
-        // for(let i = 0; i < this.path.length; i++){
-        //     let direction = this.path[i]
-        //     let counter = 0
-            
-        //     if(direction[0] == "s"){
-        //         while(counter != (direction[1] - 0.5)){
-        //             console.log("moving south!")
-        //             this.position[2] += 0.001
-        //             this.enemy.setAttribute("position", this.position[0] + " " + this.position[1] + " " + this.position[2])
-        //             counter += 0.001
-        //         }
-        //     }
-            // else if(direction[0] == "e"){
-            //     while(this.position[0] != direction[1]){
-            //         console.log("moving east!")
-            //         this.position[0] += 0.001
-            //         this.enemy.setAttribute("position", this.position[0] + " " + this.position[1] + " " + this.position[2])
-            //     }
-            // } else if(direction[0] == "w"){
-            //     while(this.position[0] != direction[1]){
-            //         console.log("moving west!")
-            //         this.position[0] -= 0.001
-            //         this.enemy.setAttribute("position", this.position[0] + " " + this.position[1] + " " + this.position[2])
-            //     }
-            // }
-        // }
+        // console.log("enemy moving!!!")
+
+        if(this.path[this.pathNum][0] == "s"){
+            this.position[2] += this.speed
+        } else if(this.path[this.pathNum][0] == "w"){
+            this.position[0] -= this.speed
+        } else if(this.path[this.pathNum][0] == "e"){
+            this.position[0] += this.speed
+        }
+
+        this.enemy.setAttribute("position", this.position[0] + " " + this.position[1] + " " + this.position[2])
+        if(this.pathNum != (this.path.length - 1)) {
+            if( Number(this.path[(this.pathNum + 1)][1]) === Number(this.position[2].toFixed(1)) && 
+                Number(this.path[(this.pathNum + 1)][2]) === Number(this.position[0].toFixed(1))){
+                    console.log("next point!")
+                    console.log("pathNum before: "+this.pathNum)
+                    this.pathNum++
+                    console.log("pathNum after: "+this.pathNum)
+            }
+        }
     }
 }

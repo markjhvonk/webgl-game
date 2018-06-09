@@ -6,7 +6,7 @@ export abstract class Enemy {
     protected enemy : HTMLElement
     private scale : number
 
-    constructor(scene:any, position:number[], path:[string,number][]) {
+    constructor(scene:any, position:number[], path:[string,number,number][]) {
         this.scale = 0.1
         this.enemy = document.createElement("a-sphere")
         this.enemy.setAttribute("radius", "1.25")
