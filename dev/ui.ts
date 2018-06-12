@@ -1,10 +1,14 @@
-export default class Ui {
+import Subject from "./subject"
+import Observer from "./observer"
+
+export default class Ui implements Subject{
 
     private scoreStatus : any
     private coinsStatus : any
     private actionPanel : any
     private health : any
     private healthbarStatus : any
+    public observers:Observer[] = []
 
     constructor() {
         
@@ -48,7 +52,16 @@ export default class Ui {
         healthbar.appendChild(bar)
         healthbar.appendChild(this.healthbarStatus)
         document.body.appendChild(healthbar)
-        
+
+        // special
+        let specialButton = document.createElement('special-button')
+        specialButton.addEventListener("click", ()=>{
+            for(const observer of this.observers){
+                observer.notify()
+            }
+        })
+        document.body.appendChild(specialButton)
+
     }
 
     private callBanner(message : string, duration : number) : void {
@@ -96,5 +109,12 @@ export default class Ui {
                 break
         }
         return newValue
+    }
+
+    public subscribe(o:Observer):void {
+        this.observers.push(o)
+    }
+    public unsubscribe(o:Observer):void {
+        // remove o from this.observers
     }
 }

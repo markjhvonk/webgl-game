@@ -37,7 +37,7 @@ export default class Game {
         ]
         let map = new Map(this.scene, this.ui, mapArray)
 
-        this.enemyInit = new EnemyInit(this.scene)
+        this.enemyInit = new EnemyInit(this.scene, this.ui)
 
         // initialize game loop
         this.gameLoop()
@@ -55,7 +55,11 @@ export default class Game {
 
     // Game loop
     gameLoop() : void {
-        this.enemyInit.enemyMovement()
+        // this.enemyInit.createEnemies()
+        // this.enemyInit.enemyMovement()
+        for (const enemy of this.enemyInit.enemies) {
+            enemy.move(this.enemyInit.enemies)
+        } 
 
         requestAnimationFrame(() => this.gameLoop())
     }
@@ -66,11 +70,10 @@ export default class Game {
         this.ui = new Ui()
 
         this.scene = document.createElement("a-scene")
-        this.scene.setAttribute("outline", "")
+        // this.scene.setAttribute("outline", "")
         // create asset pre-loader
         let assetsLoader = new AssetsLoader(this.scene)
         // this.assetLoader(assetArray)
-
 
         if(reality === "virtual") {
 

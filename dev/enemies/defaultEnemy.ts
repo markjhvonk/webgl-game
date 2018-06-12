@@ -1,4 +1,5 @@
-import { Enemy } from "./enemy";
+import Enemy from "./enemy";
+import Ui from "../ui";
 
 export default class defaultEnemy extends Enemy {
     public damage : number
@@ -9,8 +10,8 @@ export default class defaultEnemy extends Enemy {
     private movementCounter : number
     private pathNum : number
 
-    constructor(scene : any, position:number[], path:[string,number,number][]) {
-        super(scene, position, path)
+    constructor(scene : any, position:number[], path:[string,number,number][], ui:Ui) {
+        super(scene, position, path, ui)
         this.damage = 10
         this.life = 100
         this.speed = 0.01
@@ -20,9 +21,10 @@ export default class defaultEnemy extends Enemy {
         this.pathNum = 0
     }
 
-    public move() : void {
+    public move(enemies:Array<any>) : void {
         // console.log("enemy moving!!!")
-
+        // console.log("Enemy, node: " + this.enemy);
+        
         if(this.path[this.pathNum][0] == "s"){
             this.position[2] += this.speed
         } else if(this.path[this.pathNum][0] == "w"){
@@ -32,14 +34,14 @@ export default class defaultEnemy extends Enemy {
         }
 
         this.enemy.setAttribute("position", this.position[0] + " " + this.position[1] + " " + this.position[2])
+
         if(this.pathNum != (this.path.length - 1)) {
             if( Number(this.path[(this.pathNum + 1)][1]) === Number(this.position[2].toFixed(1)) && 
                 Number(this.path[(this.pathNum + 1)][2]) === Number(this.position[0].toFixed(1))){
-                    console.log("next point!")
-                    console.log("pathNum before: "+this.pathNum)
                     this.pathNum++
-                    console.log("pathNum after: "+this.pathNum)
             }
+        } else {
+            this.remove(enemies)
         }
     }
 }

@@ -136,3 +136,16 @@ healthbar healthbar-status {
     font-size: 13pt;
     color: #ff7366;
 }
+
+special-button {
+    z-index: 100;
+    position: fixed;
+    left: 10px;
+    bottom: 80px;
+    width: 7vw;
+    height: 7vw;
+    margin: 10px;
+    background-image: url('../img/ui/action.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
