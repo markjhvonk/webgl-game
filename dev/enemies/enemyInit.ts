@@ -1,6 +1,7 @@
 import Tile from "../tile";
 import DefaultEnemy from "./defaultEnemy";
 import Ui from "../ui";
+import Game from "../game";
 
 export default class enemyInit {
 

@@ -30,7 +30,7 @@ export default abstract class Enemy implements Observer{
     abstract move(enemies:Array<any>) : void
 
     notify(){
-        this.life -= 50
+        this.life -= 10
         console.log("new life = " + this.life)
     }
 
