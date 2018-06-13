@@ -1,6 +1,5 @@
 import Tile from './tile'
 import actionButton from './actionButton'
-import tower from './tower'
 import Tower from './tower';
 
 export default class OpenTile extends Tile {
@@ -32,7 +31,7 @@ export default class OpenTile extends Tile {
             this.tile.removeChild(this.selectedCylinder)
             this.towerButton.removeActionButton()
             // create test tower
-            let tower = new Tower(this.tile, 'regular', [0, this.y, 0], 1)
+            let tower = new Tower(this.tile, 'regular', [0.5, 1, -0.5], 1)
             this.towerStatus = "filled"
             console.log("tower status #3: "+this.towerStatus)
         }

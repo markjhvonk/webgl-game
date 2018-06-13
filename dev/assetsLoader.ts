@@ -48,7 +48,17 @@ export default class AssetsLoader {
             "tower-body-1-obj": "js/models/towers/body/towerDefense_009.obj",
             "tower-body-1-mtl": "js/models/towers/body/towerDefense_009.mtl",
             "tower-top-1-obj": "js/models/towers/top/towerDefense_001.obj",
-            "tower-top-1-mtl": "js/models/towers/top/towerDefense_001.mtl"
+            "tower-top-1-mtl": "js/models/towers/top/towerDefense_001.mtl",
+            "tower-top-2-obj": "js/models/towers/top/towerDefense_002.obj",
+            "tower-top-2-mtl": "js/models/towers/top/towerDefense_002.mtl",
+            "tower-top-3-obj": "js/models/towers/top/towerDefense_023.obj",
+            "tower-top-3-mtl": "js/models/towers/top/towerDefense_023.mtl",
+            "tower-top-4-obj": "js/models/towers/top/towerDefense_027.obj",
+            "tower-top-4-mtl": "js/models/towers/top/towerDefense_027.mtl",
+            "tower-top-5-obj": "js/models/towers/top/towerDefense_029.obj",
+            "tower-top-5-mtl": "js/models/towers/top/towerDefense_029.mtl",
+            "tower-top-6-obj": "js/models/towers/top/towerDefense_053.obj",
+            "tower-top-6-mtl": "js/models/towers/top/towerDefense_053.mtl"
         }
 
         let assets = document.createElement("a-assets")
