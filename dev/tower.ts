@@ -1,14 +1,25 @@
 import actionButton from './actionButton'
+import StrongTower from './strongTower'
+import FastTower from './fastTower'
+import Game from './game'
 
 export default class Tower {
     private towerContainer : any
     private towerBase : any
     private towerBody : any
-    private towerTop : any
-    private towerUpgradeButton1 : any
-    private towerUpgradeButton2 : any
-    
+    public towerTop : any
+    public damage : number
+    public speed : number
+    private upgraded : boolean
+    private strongTowerUpgradeButton : any
+    private fastTowerUpgradeButton : any
+    private tower!:Behaviour
+
     constructor(tile : any, type : string, position : Array<number>, scale : number) {
+        // set default damage & speed
+        this.damage = 15
+        this.speed = 1
+        this.upgraded = false
         // tower container
         this.towerContainer = document.createElement("a-box")
         this.towerContainer.setAttribute("width", "1.1")
@@ -45,25 +56,49 @@ export default class Tower {
     }
 
     private towerHoverIn() : void {
-        this.towerUpgradeButton1 = new actionButton('towerSelect')
-        this.towerUpgradeButton1.button.addEventListener("click", this.towerUpgrade1.bind(this))
-        this.towerUpgradeButton2 = new actionButton('towerSelect')
-        this.towerUpgradeButton2.button.addEventListener("click", this.towerUpgrade2.bind(this))
+        if(!this.upgraded){
+            this.strongTowerUpgradeButton = new actionButton('towerSelect')
+            this.strongTowerUpgradeButton.changeImage("actionStrong.png")
+            this.strongTowerUpgradeButton.button.addEventListener("click", this.strongTowerUpgrade.bind(this))
+            this.fastTowerUpgradeButton = new actionButton('towerSelect')
+            this.fastTowerUpgradeButton.changeImage("actionFast.png")
+            this.fastTowerUpgradeButton.button.addEventListener("click", this.fastTowerUpgrade.bind(this))
+        }
     }
 
     private towerHoverOut() : void {
-        this.towerUpgradeButton1.removeActionButton()
-        this.towerUpgradeButton2.removeActionButton()
+        if(!this.upgraded){
+            this.strongTowerUpgradeButton.removeActionButton()
+            this.fastTowerUpgradeButton.removeActionButton()
+        }
     }
 
-    private towerUpgrade1() : void{
-        this.towerTop.setAttribute("src", "#tower-top-1-obj")
-        this.towerTop.setAttribute("mtl", "#tower-top-1-mtl")
-        // this.towerContainer.removeChild(this.towerTop)
+    private strongTowerUpgrade() : void{
+        let ui = Game.getInstance().ui
+        if(ui.coinsStatus.value > 400){
+            // setting up behavior
+            this.tower = new StrongTower(this)
+            this.tower.update()
+            ui.setCoins("subtract", 400)
+            this.strongTowerUpgradeButton.removeActionButton()
+            this.fastTowerUpgradeButton.removeActionButton()
+            this.upgraded = true
+        } else{
+            ui.callBanner("Not enough coins!", 1000)
+        }
     }
-    private towerUpgrade2() : void{
-        this.towerTop.setAttribute("src", "#tower-top-3-obj")
-        this.towerTop.setAttribute("mtl", "#tower-top-3-mtl")
-        // this.towerContainer.removeChild(this.towerTop)
+    private fastTowerUpgrade() : void{
+        let ui = Game.getInstance().ui
+        if(ui.coinsStatus.value > 400){
+            // setting up behavior
+            this.tower = new FastTower(this)
+            this.tower.update()
+            ui.setCoins("subtract", 400)
+            this.strongTowerUpgradeButton.removeActionButton()
+            this.fastTowerUpgradeButton.removeActionButton()
+            this.upgraded = true
+        } else {
+            ui.callBanner("Not enough coins!", 1000)
+        }
     }
 }
