@@ -19,4 +19,8 @@ export default class actionButton {
     private removeActionButton() : void {
         this.actionPanel[0].removeChild(document.getElementById(this.name))
     }
+
+    public changeImage(image:string) : void {
+        this.button.style.backgroundImage = "url(img/ui/"+image+")"
+    }
 }
