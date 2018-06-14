@@ -1,6 +1,7 @@
 import Tile from './tile'
 import actionButton from './actionButton'
-import Tower from './tower';
+import Tower from './tower'
+import Game from "./game"
 
 export default class OpenTile extends Tile {
 
@@ -26,14 +27,22 @@ export default class OpenTile extends Tile {
     }
 
     createTower() : void {
+        let ui = Game.getInstance().ui
+        // ui.callBanner("Enemy intruder!", 1000)
+        // ui.setHealth("subtract", 10)
         if(this.towerStatus === "open") {
-            // remove cylinder and button just to make sure
-            this.tile.removeChild(this.selectedCylinder)
-            this.towerButton.removeActionButton()
-            // create test tower
-            let tower = new Tower(this.tile, 'regular', [0.5, 1, -0.5], 1)
-            this.towerStatus = "filled"
-            console.log("tower status #3: "+this.towerStatus)
+            if(ui.coinsStatus.value > 200){
+                ui.setCoins("subtract", 200)
+                // remove cylinder and button just to make sure
+                this.tile.removeChild(this.selectedCylinder)
+                this.towerButton.removeActionButton()
+                // create test tower
+                let tower = new Tower(this.tile, 'regular', [0.5, 1, -0.5], 1)
+                this.towerStatus = "filled"
+                console.log("tower status #3: "+this.towerStatus)
+            } else{
+                ui.callBanner("Not enough coins!", 1000)
+            }
         }
     }
 
@@ -50,6 +59,7 @@ export default class OpenTile extends Tile {
             this.tile.appendChild(this.selectedCylinder)
             // add button
             this.towerButton = new actionButton('towerSelect')
+            this.towerButton.changeImage("actionTower.png")
             this.towerButton.button.addEventListener("click", this.createTower.bind(this))
             console.log("hover in")
         }
