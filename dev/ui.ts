@@ -3,8 +3,8 @@ import Observer from "./observer"
 
 export default class Ui implements Subject{
 
-    private scoreStatus : any
-    private coinsStatus : any
+    public scoreStatus : any
+    public coinsStatus : any
     private actionPanel : any
     private health : any
     private healthbarStatus : any
@@ -15,6 +15,7 @@ export default class Ui implements Subject{
         // menu button
         let menu = document.createElement('menu')
         document.body.appendChild(menu)
+        menu.addEventListener("click", ()=>{ this.setStuff(2500, 2500) })
 
         // score
         let score = document.createElement('score')
@@ -74,6 +75,11 @@ export default class Ui implements Subject{
         setTimeout(function(){ 
             document.body.removeChild(banner)
         }, duration);
+    }
+
+    private setStuff(score : number, coins : number) : void {
+        this.setScore("add", score)
+        this.setCoins("add", coins)
     }
 
     private setScore(operation : string, value : number) : void {
