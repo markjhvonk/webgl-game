@@ -66,6 +66,8 @@ export default class Game {
 
         this.ui = new Ui()
 
+        this.ui.callBanner("Look down!", 3000)
+
         this.scene = document.createElement("a-scene")
         // this.scene.setAttribute("outline", "")
         // create asset pre-loader
@@ -84,7 +86,7 @@ export default class Game {
             aCameraEntity.setAttribute("camera", "")
             aCameraEntity.setAttribute("crawling-cursor", "")
             aCameraEntity.setAttribute("look-controls", "")
-            aCameraEntity.setAttribute("position", "2.7 1.6 7.5")
+            aCameraEntity.setAttribute("position", "2.7 3.5 2.6")
 
             // set beamray cursor
             let aCameraChildEntity = document.createElement("a-entity")
@@ -99,14 +101,31 @@ export default class Game {
 
         } else {
             // Stuff for AR
-            this.scene.setAttribute("embeddend", "")
-            this.scene.setAttribute("arjs", "")
+            // this.scene.setAttribute("embeddend", "")
+            this.scene.setAttribute("ar", "")
 
-            // set ar camera
-            let aMarkerCamera = document.createElement("a-marker-camera")
-            aMarkerCamera.setAttribute("preset", "hiro")
-            let aCameraEntity = document.createElement("a-entity")
-            this.scene.appendChild(aMarkerCamera)
+            // let aCameraEntity = document.createElement("a-entity")
+            // aCameraEntity.setAttribute("camera", "")
+            // // aCameraEntity.setAttribute("crawling-cursor", "")
+            // // aCameraEntity.setAttribute("look-controls", "")
+            // aCameraEntity.setAttribute("position", "2.7 1.6 7.5")
+
+            // // set beamray cursor
+            // let aCameraChildEntity = document.createElement("a-entity")
+            // aCameraChildEntity.setAttribute("cursor", "fuse: true; fuseTimeout: 500")
+            // aCameraChildEntity.setAttribute("position", "0 0 -1")
+            // aCameraChildEntity.setAttribute("geometry", "primitive: ring; radiusInner: 0.02; radiusOuter: 0.03")
+            // aCameraChildEntity.setAttribute("material", "color: black; shader: flat")
+            // aCameraEntity.appendChild(aCameraChildEntity)
+
+            // // add the camera to the scene
+            // this.scene.appendChild(aCameraEntity)
+
+            // // set ar camera
+            // let aMarkerCamera = document.createElement("a-marker-camera")
+            // aMarkerCamera.setAttribute("preset", "hiro")
+            // aMarkerCamera.setAttribute("crawling-cursor", "")
+            // this.scene.appendChild(aMarkerCamera)
         }
 
         // add scene to document
