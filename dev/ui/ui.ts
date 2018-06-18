@@ -1,12 +1,12 @@
-import Subject from "./subject"
-import Observer from "./observer"
+import Subject from "../subject"
+import Observer from "../observer"
 
 export default class Ui implements Subject{
 
     public scoreStatus : any
     public coinsStatus : any
-    private actionPanel : any
-    private health : any
+    private actionPanel : HTMLElement
+    private health : HTMLElement
     private healthbarStatus : any
     public observers:Observer[] = []
 
@@ -65,7 +65,7 @@ export default class Ui implements Subject{
 
     }
 
-    private callBanner(message : string, duration : number) : void {
+    public callBanner(message : string, duration : number) : void {
         let banner = document.createElement('banner')
         let bannerMessage = document.createElement('banner-message')
         bannerMessage.innerHTML = message;
@@ -77,24 +77,24 @@ export default class Ui implements Subject{
         }, duration);
     }
 
-    private setStuff(score : number, coins : number) : void {
+    public setStuff(score : number, coins : number) : void {
         this.setScore("add", score)
         this.setCoins("add", coins)
     }
 
-    private setScore(operation : string, value : number) : void {
+    public setScore(operation : string, value : number) : void {
         let newValue = this.valueOperator(operation, this.scoreStatus.value, value)
         this.scoreStatus.innerHTML = newValue
         this.scoreStatus.value = newValue
     }
 
-    private setCoins(operation :string, value : number) : void {
+    public setCoins(operation :string, value : number) : void {
         let newValue = this.valueOperator(operation, this.coinsStatus.value, value)
         this.coinsStatus.innerHTML = newValue
         this.coinsStatus.value = newValue
     }
 
-    private setHealth(operation :string, value : number) : void {
+    public setHealth(operation :string, value : number) : void {
         let newValue = this.valueOperator(operation, this.healthbarStatus.value, value)
         this.health.style.height = newValue + "%"
         this.healthbarStatus.value = newValue

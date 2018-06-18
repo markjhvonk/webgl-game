@@ -6,7 +6,7 @@ export default class StrongTower implements Behaviour{
         this.tower = tower
     }
 
-    update(){
+    update() : void{
         this.tower.damage = 30
         this.tower.towerTop.setAttribute("src", "#tower-top-1-obj")
         this.tower.towerTop.setAttribute("mtl", "#tower-top-1-mtl")

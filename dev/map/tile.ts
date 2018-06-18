@@ -1,6 +1,6 @@
 export default class Tile {
     public tile : HTMLElement
-    constructor(scene : any, src : string, mtl : string, position : Array<Number>, scale : Number){
+    constructor(scene : HTMLElement, src : string, mtl : string, position : Array<Number>, scale : number){
         // console.log("Tile created!")
         this.tile = document.createElement("a-obj-model")
         this.tile.setAttribute("src", "#" + src)

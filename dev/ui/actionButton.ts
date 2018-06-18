@@ -1,7 +1,7 @@
 export default class actionButton {
 
     private actionPanel : any
-    public button : any
+    public button : HTMLElement
     private name : string
 
     constructor(name : string) {
@@ -16,7 +16,7 @@ export default class actionButton {
         this.actionPanel[0].appendChild(this.button)
     }
 
-    private removeActionButton() : void {
+    public removeActionButton() : void {
         this.actionPanel[0].removeChild(document.getElementById(this.name))
     }
 

@@ -1,5 +1,5 @@
 import Enemy from "./enemy";
-import Ui from "../ui";
+import Ui from "../ui/ui";
 import Game from "../game";
 
 export default class defaultEnemy extends Enemy {
@@ -8,23 +8,21 @@ export default class defaultEnemy extends Enemy {
     public speed : number
     private path : [string,number,number][]
     private position : number[]
-    private movementCounter : number
     private pathNum : number
     private moving : boolean
 
-    constructor(scene : any, position:number[], path:[string,number,number][], ui:Ui) {
+    constructor(scene : HTMLElement, position:number[], path:[string,number,number][], ui:Ui) {
         super(scene, position, path, ui)
         this.damage = 10
         this.life = 100
         this.speed = 0.01
         this.path = path
         this.position = position
-        this.movementCounter = 0
         this.pathNum = 0
         this.moving = true
     }
 
-    public move(enemies:Array<any>) : void {
+    public move() : void {
         // console.log("enemy moving!!!")
         // console.log("Enemy, node: " + this.enemy);
         if(this.moving){
@@ -48,7 +46,7 @@ export default class defaultEnemy extends Enemy {
                 ui.callBanner("Enemy intruder!", 1000)
                 ui.setHealth("subtract", 10)
                 console.log(ui)
-                this.remove(enemies)
+                // this.remove(enemies)
                 this.moving = false
             }
         }

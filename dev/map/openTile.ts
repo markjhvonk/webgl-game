@@ -1,19 +1,20 @@
 import Tile from './tile'
-import actionButton from './actionButton'
-import Tower from './tower'
-import Game from "./game"
+import actionButton from '../ui/actionButton'
+import Tower from '../towers/tower'
+import Game from "../game"
+import Ui from '../ui/ui';
 
 export default class OpenTile extends Tile {
 
-    private scene : any
+    private scene! : HTMLElement
     private towerStatus : string = "open"
-    private towerButton : any
+    private towerButton! : actionButton
     private x : number
     private y : number
     private z : number
-    private selectedCylinder : any
+    private selectedCylinder! : HTMLElement
     
-    constructor(scene : any, ui : any, src : string, mtl : string, position : Array<Number>, scale : Number){
+    constructor(scene:HTMLElement, ui:Ui, src:string, mtl:string, position:Array<Number>, scale:number){
         super(scene, src, mtl, position, scale)
 
         // set base cooördinates
@@ -26,7 +27,7 @@ export default class OpenTile extends Tile {
         this.tile.addEventListener("mouseleave", this.tileHoverOut.bind(this))
     }
 
-    createTower() : void {
+    private createTower() : void {
         let ui = Game.getInstance().ui
         // ui.callBanner("Enemy intruder!", 1000)
         // ui.setHealth("subtract", 10)
@@ -46,7 +47,7 @@ export default class OpenTile extends Tile {
         }
     }
 
-    tileHoverIn() : void {
+    private tileHoverIn() : void {
         if(this.towerStatus === "open") {
             // add selected cylinder
             this.selectedCylinder = document.createElement("a-torus")
@@ -65,7 +66,7 @@ export default class OpenTile extends Tile {
         }
     }
 
-    tileHoverOut() : void {
+    private tileHoverOut() : void {
         if(this.towerStatus === "open") {
             // remove button and cylinder
             this.tile.removeChild(this.selectedCylinder)

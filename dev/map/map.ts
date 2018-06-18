@@ -1,8 +1,9 @@
 import Tile from './tile'
 import OpenTile from './openTile'
+import Ui from '../ui/ui';
 
 export default class Map {
-    constructor(scene : any, ui : any, mapArray : Array<String>){
+    constructor(scene:HTMLElement, ui:Ui, mapArray:Array<String>){
 
         console.log("Map array length: "+mapArray.length)
         

@@ -2,12 +2,10 @@ import 'aframe';
 import 'aframe-crawling-cursor';
 import 'aframe-outline';
 
-import Map from './map';
+import Map from './map/map';
 import AssetsLoader from './assetsLoader';
-import Ui from './ui';
-import Tower from './tower';
+import Ui from './ui/ui';
 import EnemyInit from './enemies/enemyInit';
-import defaultEnemy from './enemies/defaultEnemy';
 // import Enemy from './enemy';
 
 export default class Game {
@@ -15,8 +13,8 @@ export default class Game {
     // singleton (lesson)
     private static instance: Game
 
-    public scene : any
-    public ui : any
+    public scene! : HTMLElement
+    public ui! : Ui
     private enemyInit : EnemyInit
 
     private constructor(){
@@ -52,20 +50,19 @@ export default class Game {
         return Game.instance
     }
 
-
     // Game loop
-    gameLoop() : void {
+    private gameLoop() : void {
         // this.enemyInit.createEnemies()
         // this.enemyInit.enemyMovement()
         for (const enemy of this.enemyInit.enemies) {
-            enemy.move(this.enemyInit.enemies)
+            enemy.move()
         } 
 
         requestAnimationFrame(() => this.gameLoop())
     }
 
     // initialze scene
-    init(reality : string) : void {
+    private init(reality : string) : void {
 
         this.ui = new Ui()
 

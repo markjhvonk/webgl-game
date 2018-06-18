@@ -1,6 +1,7 @@
 import EnemyInit from "./enemyInit"
 import Observer from "../observer"
-import Ui from "../ui";
+import Subject from "../subject";
+import Ui from "../ui/ui";
 
 export default abstract class Enemy implements Observer{
 
@@ -9,11 +10,11 @@ export default abstract class Enemy implements Observer{
     abstract speed : number
     protected enemy : HTMLElement
     private scale : number
-    private scene : any
-    private ui : Ui
+    private scene : HTMLElement
+    private ui : Subject
     private colors : Array<string> = [ "#00ff00", "#66ff99", "#99ff99", "#ccff99", "#ffff99", "#ffcc66", "#ff9933", "#ff3300", "#990000", "#000000"]
 
-    constructor(scene:any, position:number[], path:[string,number,number][], ui:Ui) {
+    constructor(scene:any, position:number[], path:[string,number,number][], ui:Subject) {
         this.ui = ui
         this.scene = scene
         this.scale = 0.1
@@ -28,19 +29,19 @@ export default abstract class Enemy implements Observer{
         console.log("enemy created")
     }
 
-    abstract move(enemies:Array<any>) : void
+    abstract move() : void
 
-    public notify(){
+    public notify() : void{
         this.takeDamage(10)
         console.log("new life = " + this.life)
     }
 
-    public takeDamage(amount:number){
+    public takeDamage(amount:number) : void{
         this.life -= amount
         this.updateColor()
     }
 
-    public updateColor(){
+    public updateColor() : void{
         let newColor : string
         if(this.life <= 90 && this.life >= 81 ){ newColor = this.colors[1] } else
         if(this.life <= 80 && this.life >= 71 ){ newColor = this.colors[2] } else
@@ -56,7 +57,7 @@ export default abstract class Enemy implements Observer{
         this.enemy.setAttribute("color", newColor)
     }
 
-    public remove(enemies:Array<any>) : void {
+    public remove(enemies:Array<HTMLElement>) : void {
         console.log("remove enemy here")
         // console.log("enemies")
         // console.log(enemies)

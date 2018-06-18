@@ -1,7 +1,7 @@
 // import Game from './game'
 
 export default class AssetsLoader {
-    constructor(scene : any) {
+    constructor(scene : HTMLElement) {
         let assetsArray : any= {
             "tower-top-obj": "js/models/towerDefense_001.obj", 
             "tower-top-mtl": "js/models/towerDefense_001.mtl",

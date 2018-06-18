@@ -1,30 +1,21 @@
-import Tile from "../tile";
+import Tile from "../map/tile";
 import DefaultEnemy from "./defaultEnemy";
-import Ui from "../ui";
-import Game from "../game";
+import Ui from "../ui/ui";
+import Enemy from "./enemy";
 
 export default class enemyInit {
 
     private startPos : number[]
     private enemyStartPos : number[]
     private path : [string, number, number][]
-    private scene : any
+    private scene : HTMLElement
     private enemyAmount : number
-    private enemyCounter : number
-    private enemyTimer : number
-    private enemyTimeout : number
-    private enemyMovementCounter : number
     private ui : Ui
-    // private enemiesArrayCounter : number
-    public enemies : Array<any>
+    public enemies : Array<Enemy>
 
-    constructor(scene : any, ui:Ui){
+    constructor(scene : HTMLElement, ui:Ui){
         this.scene = scene
         this.enemyAmount = 10
-        this.enemyCounter = 0
-        this.enemyMovementCounter = 0
-        this.enemyTimer = 0
-        this.enemyTimeout = 200
         this.ui = ui
 
         this.startPos = [3, 0, -1]
