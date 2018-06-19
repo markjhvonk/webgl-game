@@ -4,7 +4,8 @@
 Het concept van mij spel is een towerdence game gemaakt met Aframe. Je kan torens plaatsen door naar de lege 'tiles' te kijken en op de knop te drukken die verschijnt. De torens kan je ook upgraden. Verder kan je, als je linksboven op de pauze knop drukt, jezelf geld en score geven om alles uit te proberen gezien de torens nog niet schieten.
 
 ## Speelbare game
-Coming soon...
+https://markjhvonk.github.io/webgl-game/ <br/>
+*Hint: druk links bovenin op de pauze knop om jezelf geld en score te geven*
 
 ## Installatie
 Als je de game lokaal wilt bewerken en testen, moet je hem eerst clonen, dan ```npm i``` runnen met een console naar keuze in het mapje waar je de game hebt gecloned en dan kan je vervolgens ```npm run start``` uitvoeren om de game en de compiler lokaal te laten runnen.
@@ -32,6 +33,3 @@ Ik pas strategy toe bij de Tower class. Een tower kan 2 verschillende behaviours
 
 ### Observer
 Het observer pattern heb ik toegepast bij de enemies. Enemies abboneren zich op de UI class. In deze class heb je een knop en als je daar op drukt, krijgen alle enemies damage. Dit kan je dus zien als een soort 'special abillity'.
-
-## Gameplay componenten
-
